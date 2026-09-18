@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="김나무위키의 개인 프로필과 활동을 소개하는 예시 페이지입니다." />
+  <title>김나무위키 | 공식 프로필</title>
+
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: rgba(255, 255, 255, 0.08);
+      --card-border: rgba(255, 255, 255, 0.12);
+      --text: #f7f8fb;
+      --muted: #aab2c5;
+      --accent: #7c9cff;
+      --accent-2: #8be9c7;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "Noto Sans KR", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 10%, rgba(124, 156, 255, 0.24), transparent 34rem),
+        radial-gradient(circle at 85% 15%, rgba(139, 233, 199, 0.14), transparent 28rem),
+        linear-gradient(180deg, #0b1020 0%, #10172a 100%);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1080px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+    }
+
+    .logo {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.4fr 0.8fr;
+      gap: 28px;
+      align-items: stretch;
+      padding: 54px 0 34px;
+    }
+
+    .panel {
+      border: 1px solid var(--card-border);
+      background: var(--card);
+      backdrop-filter: blur(18px);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      padding: 52px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(124, 156, 255, 0.12);
+      border: 1px solid rgba(124, 156, 255, 0.28);
+      color: #cdd7ff;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+    }
+
+    .lead {
+      margin: 24px 0 0;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.8;
+      word-break: keep-all;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 14px;
+      font-weight: 700;
+      border: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.07);
+      transition: 0.2s ease;
+    }
+
+    .button.primary {
+      color: #0c1324;
+      background: linear-gradient(135deg, #9bb2ff, #8be9c7);
+      border: 0;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .profile-card {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .avatar {
+      width: 132px;
+      height: 132px;
+      display: grid;
+      place-items: center;
+      border-radius: 32px;
+      font-size: 50px;
+      font-weight: 900;
+      color: #0b1020;
+      background:
+        linear-gradient(135deg, #9bb2ff 0%, #8be9c7 100%);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.3);
+    }
+
+    .profile-card h2 {
+      margin: 26px 0 8px;
+      font-size: 26px;
+    }
+
+    .profile-card p {
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    .socials {
+      display: grid;
+      gap: 10px;
+      margin-top: 26px;
+    }
+
+    .social {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .social span:last-child {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    section {
+      padding: 26px 0;
+    }
+
+    .section-title {
+      margin: 0 0 18px;
+      font-size: 26px;
+      letter-spacing: -0.03em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 26px;
+      border: 1px solid var(--card-border);
+      background: rgba(255,255,255,.055);
+      border-radius: 22px;
+    }
+
+    .card .number {
+      font-size: 36px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+
+    .card h3 {
+      margin: 16px 0 8px;
+      font-size: 18px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    .project-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .project {
+      padding: 30px;
+      border-radius: 22px;
+      border: 1px solid var(--card-border);
+      background: rgba(255,255,255,.055);
+    }
+
+    .project .tag {
+      color: #bfcaff;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .project h3 {
+      margin: 10px 0;
+      font-size: 22px;
+    }
+
+    .project p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .cta {
+      margin: 32px 0 64px;
+      padding: 38px;
+      text-align: center;
+    }
+
+    .cta h2 {
+      margin: 0 0 10px;
+      font-size: 30px;
+    }
+
+    .cta p {
+      margin: 0 auto;
+      max-width: 650px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    footer {
+      padding: 26px 0 40px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .demo-note {
+      margin-top: 14px;
+      opacity: 0.76;
+    }
+
+    @media (max-width: 800px) {
+      nav {
+        display: none;
+      }
+
+      .hero,
+      .grid,
+      .project-list {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        padding: 34px;
+      }
+
+      .profile-card {
+        min-height: 440px;
+      }
+    }
+  </style>
+<script type="text/javascript" nonce="84bf8399007a4e9da702bcbc325" src="//local.adguard.org?ts=1789704201885&amp;type=content-script&amp;dmn=chatgpt.com&amp;url=https%3A%2F%2Fchatgpt.com%2Fbackend-api%2Festuary%2Fcontent%3Fid%3Dfile_00000000a5648211a6ad332dc2843f7c%26fn%3Dindex.html%26cd%3Dattachment%26ts%3D497140%26p%3Dfs%26cid%3D1%26sig%3Dbc45d17f875fbba5c0a263d203ce7c0c0eff63348ece75b22b4e48c7bc68e78c%26v%3D0&amp;app=chrome.exe&amp;css=2&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1&amp;stealth=1&amp;st-loc&amp;st-dnt"></script><script type="text/javascript" nonce="84bf8399007a4e9da702bcbc325" src="//local.adguard.org?ts=1789704201885&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;type=user-script"></script></head>
+
+<body>
+  <div class="container">
+    <header>
+      <a class="logo" href="#">KIM NAMUWIKI</a>
+
+      <nav aria-label="주요 메뉴">
+        <a href="#about">소개</a>
+        <a href="#projects">활동</a>
+        <a href="#contact">연락처</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="about">
+        <article class="panel hero-copy">
+          <div class="eyebrow">● OFFICIAL PROFILE</div>
+
+          <h1>김나무위키</h1>
+
+          <p class="lead">
+            안녕하세요. 콘텐츠 제작과 인터넷 문화에 관심이 많은 김나무위키입니다.
+            다양한 플랫폼에서 일상, 기술, 리뷰 콘텐츠를 제작하며 새로운 프로젝트를
+            소개하고 있습니다.
+          </p>
+
+          <div class="actions">
+            <a class="button primary" href="#projects">주요 활동 보기</a>
+            <a class="button" href="#contact">협업 문의</a>
+          </div>
+        </article>
+
+        <aside class="panel profile-card">
+          <div>
+            <div class="avatar" aria-label="김나무위키 프로필 이미지 대체 영역">김</div>
+
+            <h2>김나무위키</h2>
+            <p>
+              Creator · Blogger · Developer<br />
+              Seoul, Republic of Korea
+            </p>
+          </div>
+
+          <div class="socials">
+            <!-- 실제 배포 시 원하는 링크로 교체하면 됩니다. -->
+            <a class="social" href="https://x.com/" target="_blank" rel="noopener noreferrer">
+              <strong>𝕏 / Twitter</strong>
+              <span>@kimnamuwiki ↗</span>
+            </a>
+
+            <a class="social" href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
+              <strong>YouTube</strong>
+              <span>김나무위키 ↗</span>
+            </a>
+
+            <a class="social" href="https://github.com/" target="_blank" rel="noopener noreferrer">
+              <strong>GitHub</strong>
+              <span>kimnamuwiki ↗</span>
+            </a>
+          </div>
+        </aside>
+      </section>
+
+      <section aria-labelledby="stats-title">
+        <h2 class="section-title" id="stats-title">숫자로 보는 활동</h2>
+
+        <div class="grid">
+          <article class="card">
+            <div class="number">128K</div>
+            <h3>누적 조회수</h3>
+            <p>여러 플랫폼에서 콘텐츠가 기록한 누적 조회수라고 가정한 예시 수치입니다.</p>
+          </article>
+
+          <article class="card">
+            <div class="number">24K</div>
+            <h3>팔로워</h3>
+            <p>프로필의 홍보성을 강조하기 위해 배치한 가상의 소셜 미디어 수치입니다.</p>
+          </article>
+
+          <article class="card">
+            <div class="number">37</div>
+            <h3>프로젝트</h3>
+            <p>웹 서비스, 영상, 리뷰 등 다양한 프로젝트를 진행했다는 설정의 예시입니다.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="projects" aria-labelledby="projects-title">
+        <h2 class="section-title" id="projects-title">주요 활동</h2>
+
+        <div class="project-list">
+          <article class="project">
+            <div class="tag">PROJECT 01</div>
+            <h3>Namuwiki Lab</h3>
+            <p>
+              인터넷에서 유용한 서비스를 소개하고 직접 작은 웹 프로젝트를 제작하는
+              개인 프로젝트입니다.
+            </p>
+          </article>
+
+          <article class="project">
+            <div class="tag">PROJECT 02</div>
+            <h3>Weekly Archive</h3>
+            <p>
+              한 주 동안 발견한 사이트, 영상, 기술 소식을 정리해 소개하는 아카이브
+              콘텐츠입니다.
+            </p>
+          </article>
+
+          <article class="project">
+            <div class="tag">PROJECT 03</div>
+            <h3>YouTube Channel</h3>
+            <p>
+              소프트웨어, 인터넷 서비스, 일상 이야기를 짧고 이해하기 쉽게 소개하는
+              영상 채널입니다.
+            </p>
+          </article>
+
+          <article class="project">
+            <div class="tag">PROJECT 04</div>
+            <h3>Social Update</h3>
+            <p>
+              X를 통해 새 콘텐츠, 개인 의견, 프로젝트 진행 상황을 실시간으로 알립니다.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="panel cta">
+          <h2>협업 및 문의</h2>
+          <p>
+            콘텐츠 제작, 광고, 인터뷰, 프로젝트 협업 제안을 받고 있습니다.
+            아래 버튼을 통해 연락해 주세요.
+          </p>
+
+          <div class="actions" style="justify-content:center">
+            <a class="button primary" href="mailto:example@example.com">이메일 보내기</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © 2026 Kim Namuwiki. All rights reserved.
+      <div class="demo-note">
+        ※ 이 페이지는 인터넷 사이트 등재기준 토론을 위한 가상의 예시 페이지이며,
+        인물·수치·계정·활동 내용은 모두 예시입니다.
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
